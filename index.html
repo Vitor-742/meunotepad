@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boloco</title>
+    <style>
+        #novaLinha {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #texto {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Escrever linhas</h2>
+        <input type="text" id="novaLinha" placeholder="Digite o texto para adicionar">
+        <button onclick="adicionarNovaLinha()">Adicionar</button>
+        <button onclick="limparTudo()">Limpar todas as notas</button>
+        <br>
+        <div id="texto" readonly></div>
+    </div>
+
+    <script>
+
+        function limparTudo() {
+            const textoArea = document.getElementById('texto');
+
+            textoArea.innerHTML = "";
+
+
+        }
+        function adicionarNovaLinha() {
+            let texto = document.getElementById('novaLinha').value;
+            const textoArea = document.getElementById('texto');
+
+            const novaParagrafo = document.createElement("p");
+
+            //texto = encodeSpecialCharacters(texto)
+
+            novaParagrafo.textContent = texto;
+
+            if (texto) {
+                textoArea.appendChild(novaParagrafo)
+            } else {
+                alert("Digite algo para adicionar!");
+            }
+        }
+
+        function encodeSpecialCharacters(text) {
+            const specialCharsMap = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            };
+
+            return text.replace(/[&<>"']/g, function(match) {
+                return specialCharsMap[match];
+            });
+        }
+    </script>
+</body>
+</html>
